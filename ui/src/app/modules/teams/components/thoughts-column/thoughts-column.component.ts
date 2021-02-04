@@ -24,6 +24,7 @@ import {fadeInOutAnimation} from '../../../animations/add-delete-animation';
 import {Themes} from '../../../domain/Theme';
 import {ColumnResponse, emptyColumnResponse} from '../../../domain/column-response';
 import {WebsocketResponse} from '../../../domain/websocket-response';
+import {CdkDragDrop, transferArrayItem} from "@angular/cdk/drag-drop";
 
 @Component({
   selector: 'rq-thoughts-column',
@@ -116,6 +117,14 @@ export class ThoughtsColumnComponent implements OnInit {
 
   sortChanged(sorted: boolean) {
     this.thoughtsAreSorted = sorted;
+  }
+
+  moveThoughtBetweenColumns(event: CdkDragDrop<Thought>) {
+    if(event.container == event.previousContainer) {
+      console.log("Do nothing when dropped in same column");
+      return;
+    }
+    console.log("I SEE YOU", event.item.data, event.container.data);
   }
 
   updateThought(thought: Thought) {
