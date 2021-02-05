@@ -119,12 +119,16 @@ export class ThoughtsColumnComponent implements OnInit {
     this.thoughtsAreSorted = sorted;
   }
 
-  moveThoughtBetweenColumns(event: CdkDragDrop<Thought>) {
+  moveThoughtBetweenColumns(event: CdkDragDrop<ColumnResponse>) {
     if(event.container == event.previousContainer) {
       console.log("Do nothing when dropped in same column");
       return;
     }
     console.log("I SEE YOU", event.item.data, event.container.data);
+    transferArrayItem(event.previousContainer.data.items.active, 
+      event.container.data.items.active,
+       event.previousIndex,
+        event.currentIndex);
   }
 
   updateThought(thought: Thought) {

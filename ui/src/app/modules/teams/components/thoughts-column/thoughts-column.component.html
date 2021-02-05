@@ -18,7 +18,7 @@
 <rq-thoughts-header [teamId]="teamId" [thoughtAggregation]="thoughtAggregation" [thoughtCount]="activeThoughtsCount"
   [hideNewThought]="hideNewThought" [theme]="theme" (sortChanged)="sortChanged($event)"></rq-thoughts-header>
 
-<div cdkDropList cdkDropListSortingDisabled [cdkDropListData]="thoughtAggregation.id" (cdkDropListDropped)="moveThoughtBetweenColumns($event)" class="rq-thought-list {{thoughtAggregation.topic}}">
+<div cdkDropList cdkDropListSortingDisabled [cdkDropListData]="thoughtAggregation" (cdkDropListDropped)="moveThoughtBetweenColumns($event)" class="rq-thought-list {{thoughtAggregation.topic}}">
   <rq-task *ngFor="let thought of activeThoughts" cdkDrag [cdkDragData]="thought" [task]="thought" [type]="thoughtAggregation.topic"
     (messageChanged)="onMessageChanged($event, thought)" (deleted)="onDeleted($event)"
     (messageClicked)="displayPopup(thought)" (starCountIncreased)="starCountChanged($event, thought)"
